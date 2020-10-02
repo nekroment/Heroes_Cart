@@ -5,7 +5,10 @@ import { Document } from 'mongoose';
 export class Heroes extends Document {
 
     @Prop()
-    nuckname: string;
+    _id: string;
+    
+    @Prop()
+    nickname: string;
 
     @Prop()
     real_name: string;
