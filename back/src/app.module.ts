@@ -6,7 +6,9 @@ require('dotenv/config');
 const connectionString = `mongodb+srv://${process.env.DB_LOGIN}:${process.env.DB_PASSWORD}@cluster0.zkmbj.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 
 @Module({
-  imports: [MongooseModule.forRoot(connectionString), HeroesModule],
+  imports: [
+    MongooseModule.forRoot(connectionString),
+    HeroesModule],
   controllers: [],
   providers: [],
 })
