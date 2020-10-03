@@ -8,4 +8,4 @@ let reducers = combineReducers({
     form: formReducer
 });
 
-const store = createStore(reducers, compose(applyMiddleware(thunk)));
+export const store = createStore(reducers, compose(applyMiddleware(thunk)));

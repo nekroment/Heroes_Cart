@@ -25,14 +25,14 @@ export const getHeroThunkCreator = () => {
     return async (dispatch) => {
         try {
             const responce = await heroAPI.getHeroes();
-            const heroes = responce.data
+            const heroes = responce.data;
             for(let i = 0; i < heroes.length; i++) {
                 const img = await heroAPI.getImage(heroes[i].image);
-                heroes[i].img = img;
+                heroes[i].img = 'data:image/jpeg;base64,'+ img.data;
             }
             dispatch(getHero(heroes));
         } catch (error) {
-
+            console.log(error);
         }
     }
 }
