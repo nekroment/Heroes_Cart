@@ -21,6 +21,7 @@ export class Hero extends Document {
 
     @Prop()
     image: string;
+
 }
 
 export const HeroSchema = SchemaFactory.createForClass(Hero);
