@@ -1,3 +1,4 @@
+import { Hero } from './../schema/Hero';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Heroes } from 'src/schema/Heroes';
@@ -23,9 +24,8 @@ export class HeroesService {
         return await this.heroesModel.find();
     }
 
-    async changeHero(hero: Heroes) {
+    async changeHero(hero: Hero) {
         const oldHero = await this.heroesModel.findOne({_id: hero._id});
-
         if(hero.image !== oldHero.image) {
             fs.unlinkSync(`./src/heroesImages/${oldHero.image}`);
         }

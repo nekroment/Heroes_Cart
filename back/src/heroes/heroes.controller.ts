@@ -1,3 +1,4 @@
+import { Hero } from './../schema/Hero';
 import {
   Controller,
   Post,
@@ -17,7 +18,9 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { Heroes } from 'src/schema/Heroes';
 import { identity } from 'rxjs';
+import { DeleteHeroes } from 'src/schema/DeleteHeroes';
 const path = require('path');
+const fs = require('fs')
 
 @Controller('heroes')
 export class HeroesController {
@@ -104,7 +107,7 @@ export class HeroesController {
   )
   async changeHero(
     @UploadedFile() file,
-    @Body() body: Heroes,
+    @Body() body: Hero,
   ) {
     try {
         body.image = `${file.filename}`;
@@ -121,7 +124,7 @@ export class HeroesController {
   }
 
   @Delete(':_id/:image')
-  async deleteHero(@Param() params: Heroes) {
+  async deleteHero(@Param() params: DeleteHeroes) {
       return await this.heroesService.deleteHero(params._id, params.image);
   }
 }
