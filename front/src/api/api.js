@@ -6,10 +6,10 @@ const instance = axios.create({
 
 export const heroAPI = {
     async getHeroes () {
-        return await instance.get('/');
+        return await instance.get('/heroes');
     },
     async getImage (image) {
-        return await instance.get(`/${image}/image`);
+        return await instance.get(`/heroes/${image}/image`);
     },
     async saveHero (image, hero) {
         const formData = new FormData();
@@ -28,9 +28,9 @@ export const heroAPI = {
         formData.append('origin_description', hero.origin_description);
         formData.append('catch_phrase', hero.catch_phrase);
         formData.append('_id', hero._id);
-        return await instance.post('/change', formData);
+        return await instance.post('/heroes/change', formData);
     },
     async deleteHero (_id, image) {
-        return await instance.delete(`/${_id}/${image}`);
+        return await instance.delete(`/heroes/${_id}/${image}`);
     }
 }
