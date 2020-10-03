@@ -1,0 +1,11 @@
+.hero-logo {
+  float: left;
+  height: 100px;
+  width: 100px;
+}
+
+.cart {
+    border-radius: 5px;
+    border: 1px solid black;
+    margin-bottom: 10px;
+}
