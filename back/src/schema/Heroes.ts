@@ -3,9 +3,6 @@ import { Document } from 'mongoose';
 
 @Schema()
 export class Heroes extends Document {
-
-    @Prop()
-    _id: string;
     
     @Prop()
     nickname: string;
