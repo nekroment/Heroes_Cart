@@ -20,7 +20,8 @@ import { Heroes } from 'src/schema/Heroes';
 import { identity } from 'rxjs';
 import { DeleteHeroes } from 'src/schema/DeleteHeroes';
 const path = require('path');
-const fs = require('fs')
+const fs = require('fs');
+const imageToBase64 = require('image-to-base64');
 
 @Controller('heroes')
 export class HeroesController {
@@ -42,10 +43,7 @@ export class HeroesController {
       }),
     }),
   )
-  async saveHero(
-    @UploadedFile() file,
-    @Body() body: Heroes,
-  ) {
+  async saveHero(@UploadedFile() file, @Body() body: Heroes) {
     try {
       return this.heroesService.saveHero(`${file.filename}`, body);
     } catch (error) {
@@ -62,7 +60,11 @@ export class HeroesController {
   @Get('/:image/image')
   async getImage(@Param('image') image, @Res() res) {
     try {
-      res.sendFile(image, { root: './src/heroesImages' });
+      const string = `./src/heroesImages/${image}`;
+      fs.readFile(path.resolve(string), (err, data) => {
+        const logo = data.toString('base64');
+        res.send(logo);
+      });
     } catch (error) {
       throw new HttpException(
         {
@@ -77,7 +79,8 @@ export class HeroesController {
   @Get('/')
   async getHeroes() {
     try {
-      return await this.heroesService.getHeroes();
+      const heroes = await this.heroesService.getHeroes();
+      return heroes;
     } catch (error) {
       throw new HttpException(
         {
@@ -105,12 +108,9 @@ export class HeroesController {
       }),
     }),
   )
-  async changeHero(
-    @UploadedFile() file,
-    @Body() body: Hero,
-  ) {
+  async changeHero(@UploadedFile() file, @Body() body: Hero) {
     try {
-        body.image = `${file.filename}`;
+      body.image = `${file.filename}`;
       return this.heroesService.changeHero(body);
     } catch (error) {
       throw new HttpException(
@@ -125,6 +125,6 @@ export class HeroesController {
 
   @Delete(':_id/:image')
   async deleteHero(@Param() params: DeleteHeroes) {
-      return await this.heroesService.deleteHero(params._id, params.image);
+    return await this.heroesService.deleteHero(params._id, params.image);
   }
 }
