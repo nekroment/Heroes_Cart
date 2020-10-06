@@ -20,7 +20,13 @@ export class Hero extends Document {
     catch_phrase: string;
 
     @Prop()
-    image: string;
+    image: string[];
+
+    @Prop()
+    delete_image: string[];
+
+    @Prop()
+    save_image: string[];
 
 }
 

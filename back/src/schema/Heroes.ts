@@ -17,7 +17,7 @@ export class Heroes extends Document {
     catch_phrase: string;
 
     @Prop()
-    image: string;
+    image: string[];
 
 }
 

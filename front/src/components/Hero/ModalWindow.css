@@ -1,0 +1,14 @@
+.modal-logo-preview {
+width: 100px;
+height: 100px;
+margin-bottom: 10px;
+}
+.modal-description {
+    border: 1px solid gray;
+    border-radius: 3px;
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+.modal-description span {
+    font-weight: bolder;
+}

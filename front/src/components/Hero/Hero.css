@@ -1,11 +1,32 @@
 .hero-logo {
-  float: left;
-  height: 100px;
-  width: 100px;
+  height: 320px;
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 20px;
 }
 
 .cart {
+  position: relative;
+    width: 440px;
+    min-height: 440px;
     border-radius: 5px;
     border: 1px solid black;
     margin-bottom: 10px;
+}
+.cart.change {
+  height: 350px;
+} 
+.nickname {
+  margin: 5px;
+  border-radius: 2px;
+  border: solid 1px black;
+}
+.nickname span {
+  margin-bottom: 20px;
+  font-weight: bolder;
+}
+.change-button {
+  position: absolute;
+  top: 90%;
+  left: 30%;
 }
